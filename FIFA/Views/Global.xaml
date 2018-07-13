@@ -6,9 +6,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="&quot;Global&quot; is currently under construction" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <controls:DataGrid HorizontalScrollBarVisibility="Visible" Margin="15">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="Semana nacimiento"/>
+                <controls:DataGridTextColumn Header="Incubadora Anhalzer"/>
+                <controls:DataGridTextColumn Header="Incubesa"/>
+                <controls:DataGridTextColumn Header="Genetica Nacional"/>
+                <controls:DataGridTextColumn Header="Total" />
+                <controls:DataGridTextColumn Header="Mortalidad"/>
+                <controls:DataGridTextColumn Header="Semana KFC"/>
+                <controls:DataGridTextColumn Header="Proyectado KFC"/>
+                <controls:DataGridTextColumn Header="Entrega KFC"/>
+                <controls:DataGridTextColumn Header="Precio"/>
+                <controls:DataGridTextColumn Header="Semana venta en pie" />
+                <controls:DataGridTextColumn Header="Pollo estimado"/>
+                <controls:DataGridTextColumn Header="Venta Pereira"/>
+                <controls:DataGridTextColumn Header="Venta Gustapollo"/>
+                <controls:DataGridTextColumn Header="Venta Granja"/>
+                <controls:DataGridTextColumn Header="Venta Faina"/>
+                <controls:DataGridTextColumn Header="Liquidacion"/>
+                <controls:DataGridTextColumn Header="Saldo"/>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
     </Grid>
 </Page>
