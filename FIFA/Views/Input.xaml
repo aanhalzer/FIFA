@@ -22,11 +22,17 @@
             <TextBlock x:Name="weekTotal" Text="#####" Margin="5 0 0 0"/>
         </StackPanel>
         
-        <controls:DataGrid Grid.Row="1" Margin="15">
+        <controls:DataGrid Grid.Row="1" Margin="15" ItemsSource="{x:Bind SomeList}" IsReadOnly="False" AutoGenerateColumns="False">
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="Lote"/>
-                <controls:DataGridTextColumn Header="Cantidad"/>
-                <controls:DataGridTextColumn Header="Fecha"/>
+                <controls:DataGridTextColumn Header="Lote" Binding="{Binding Lote}"/>
+                <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+                <controls:DataGridTemplateColumn Header="Fecha">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CalendarDatePicker Date="{Binding Fecha}" />
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
     </Grid>
