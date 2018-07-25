@@ -16,12 +16,12 @@ namespace FIFA
         public static ObservableCollection<TestItem> TestList () {
             ObservableCollection<TestItem> toReturn = new ObservableCollection<TestItem> {
                 new TestItem {
-                    Fecha = new DateTimeOffset(new DateTime(2018, 1, 1)),
+                    Fecha = new DateTime(1977, 1, 5),
                     Lote = 1,
                     Cantidad = 1
                 },
                 new TestItem {
-                    Fecha = new DateTimeOffset(new DateTime(2018, 1, 1)),
+                    Fecha = new DateTime(2018, 1, 1),
                     Lote = 2,
                     Cantidad = 2
                 }
