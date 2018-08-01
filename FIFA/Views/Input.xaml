@@ -20,6 +20,7 @@
             <TextBlock x:Name="weekNumber" Text="#####" Margin="5 0 0 0"/>
             <TextBlock Text="Cantidad total: " Margin="20 0 0 0"/>
             <TextBlock x:Name="weekTotal" Text="#####" Margin="5 0 0 0"/>
+            <Button x:Name="AddNewRow" Content="Insertar otro lote" Margin="5 0 0 0" Width="Auto" Click="AddNewRow_Click" />
         </StackPanel>
 
         <controls:DataGrid Grid.Row="1" Margin="15" ItemsSource="{x:Bind SomeList}" IsReadOnly="False" AutoGenerateColumns="False">

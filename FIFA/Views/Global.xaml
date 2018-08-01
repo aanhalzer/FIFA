@@ -10,8 +10,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <controls:DataGrid HorizontalScrollBarVisibility="Visible" Margin="15">
-            <controls:DataGrid.Columns>
+        <controls:DataGrid HorizontalScrollBarVisibility="Visible" Margin="15" IsEnabled="False" x:Name="TestGrid">
+            <!--<controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="Semana nacimiento"/>
                 <controls:DataGridTextColumn Header="Incubadora Anhalzer"/>
                 <controls:DataGridTextColumn Header="Incubesa"/>
@@ -30,7 +30,7 @@
                 <controls:DataGridTextColumn Header="Venta Faina"/>
                 <controls:DataGridTextColumn Header="Liquidacion"/>
                 <controls:DataGridTextColumn Header="Saldo"/>
-            </controls:DataGrid.Columns>
+            </controls:DataGrid.Columns>-->
         </controls:DataGrid>
     </Grid>
 </Page>

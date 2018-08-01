@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FIFA.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace FIFA.Views {
     public sealed partial class Global : Page {
         public Global() {
             this.InitializeComponent();
+            TestGrid.ItemsSource = TestGlobal.TestGlobalList();
         }
     }
 }

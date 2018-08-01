@@ -29,5 +29,9 @@ namespace FIFA.Views {
             SomeList = TestItem.TestList();
             this.DataContext = SomeList;
         }
+
+        private void AddNewRow_Click(object sender, RoutedEventArgs e) {
+            SomeList.Add(new TestItem { });
+        }
     }
 }
