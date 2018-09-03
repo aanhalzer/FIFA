@@ -23,11 +23,11 @@
             <TextBox x:Name="weekTotal" Margin="5 0 0 0"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="40 15 0 0" Height="450">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="30 15 0 0" Height="450">
             <controls:DataGrid 
             Margin="0" Width="300" 
             HorizontalAlignment="Left"
-            ItemsSource="{x:Bind SomeList}" 
+            ItemsSource="{x:Bind InitialList}" 
             IsReadOnly="False" 
             AutoGenerateColumns="False">
                 <controls:DataGrid.Columns>
@@ -47,7 +47,7 @@
                     </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
-        
+
             <StackPanel Orientation="Vertical" Margin="40 30 0 0">
                 <TextBlock Text="Pollo bebe por incubadora"/>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
@@ -56,7 +56,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Incubesa: " Margin="0 5 0 0"/>
-                    <TextBox Margin="5 0 0 0"/>
+                    <TextBox Margin="5 0 0 0" HorizontalAlignment="Right"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <TextBlock Text="Genetica Nacional: " Margin="0 5 0 0"/>
@@ -85,9 +85,10 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Margin="40 10 0 0" Orientation="Horizontal" VerticalAlignment="Top">
+        <StackPanel Grid.Row="2" Margin="30 10 0 0" Orientation="Horizontal" VerticalAlignment="Top">
             <Button x:Name="AddNewRow" Content="Insertar otro lote" Margin="0 0 0 0" Width="Auto" Click="AddNewRow_Click" />
-            <Button x:Name="PushData" Content="Guardar datos" Margin="20 0 0 0"/>
+            <Button x:Name="DeleteLastRow" Content="Eliminar ultimo lote" Margin="20 0 0 0" Click="DeleteLastRow_Click" />
+            <Button x:Name="PushData" Content="Guardar datos" Margin="20 0 0 0" Click="PushData_Click"/>
         </StackPanel>
     </Grid>
 </Page>
