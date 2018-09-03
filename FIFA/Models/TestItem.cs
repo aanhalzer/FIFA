@@ -15,25 +15,15 @@ namespace FIFA {
         public int Cantidad { get; set; }
 
         public TestItem() {
-            this.Fecha = new DateTime(2016, 1, 1);
+            this.Fecha = DateTime.Now;
             this.Lote = 0;
             this.Cantidad = 0;
         }
 
         public static ObservableCollection<TestItem> TestList () {
-            ObservableCollection<TestItem> toReturn = new ObservableCollection<TestItem> {
-                new TestItem {
-                    Fecha = new DateTime(1977, 1, 5),
-                    Lote = 1,
-                    Cantidad = 1
-                },
-                new TestItem {
-                    Fecha = new DateTime(2018, 1, 1),
-                    Lote = 2,
-                    Cantidad = 2
-                }
+            return new ObservableCollection<TestItem> {
+                new TestItem ()
             };
-            return toReturn;
         }
     }
 }
