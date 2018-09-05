@@ -16,22 +16,22 @@ namespace FIFA {
         public bool LotePro { get; set; }
         public int Cantidad { get; set; }
         public bool CantidadPro { get; set; }
-        public DateTimeOffset Fecha { get; set; }
+        public int Fecha { get; set; }
         public bool FechaPro { get; set; }
 
-        public IngresoPorLote(int weekNumber) {
-            this.Semana = weekNumber;
+        public IngresoPorLote() {
+            this.Semana = 0;
             this.Lote = 0;
             this.LotePro = true;
             this.Cantidad = 0;
             this.CantidadPro = true;
-            this.Fecha = DateTime.Now;
+            this.Fecha = 0;
             this.FechaPro = true;
         }
 
-        public static ObservableCollection<IngresoPorLote> InitialList (int weekNumber) {
+        public static ObservableCollection<IngresoPorLote> InitialList () {
             return new ObservableCollection<IngresoPorLote> {
-                new IngresoPorLote (weekNumber)
+                new IngresoPorLote ()
             };
         }
     }

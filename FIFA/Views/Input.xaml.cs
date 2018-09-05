@@ -24,12 +24,12 @@ namespace FIFA.Views {
 
         public Input() {
             this.InitializeComponent();
-            InitialList = IngresoPorLote.InitialList(1);
+            InitialList = IngresoPorLote.InitialList();
             this.DataContext = InitialList;
         }
 
         private void AddNewRow_Click(object sender, RoutedEventArgs e) {
-            InitialList.Add(new IngresoPorLote (1));
+            InitialList.Add(new IngresoPorLote ());
         }
 
         private void PushData_Click(object sender, RoutedEventArgs e) {
