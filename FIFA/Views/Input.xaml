@@ -12,93 +12,68 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="30 20 0 0">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" Orientation="Horizontal" Margin="30 20 0 0">
             <TextBlock Text="Semana: " VerticalAlignment="Center"/>
             <TextBox x:Name="weekNumber" Margin="5 0 0 0"/>
-            <TextBlock Text="Año: " Margin="20 5 0 0"/>
-            <TextBox x:Name="weekTotal" VerticalAlignment="Center"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="30 15 0 0" Height="450">
+        
+        <!--Ingresos por Lote-->
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <TextBlock Text="Ingreso por Lote" HorizontalAlignment="Center"/>
             <controls:DataGrid 
-            Margin="0" Width="240" 
-            HorizontalAlignment="Left"
-            ItemsSource="{x:Bind InitialList}" 
-            IsReadOnly="False" 
-            AutoGenerateColumns="False">
-                <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Header="Lote" Binding="{Binding Lote}"/>
-                    <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
-                    <controls:DataGridTextColumn Header="Dia de semana" Binding="{Binding Fecha}"/>
-                </controls:DataGrid.Columns>
+                HorizontalAlignment="Center"
+                IsReadOnly="False" 
+                AutoGenerateColumns="False">
             </controls:DataGrid>
-
-            <Grid Margin="40 0 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Ingreso" HorizontalAlignment="Center" Margin="0 0 0 10"/>
-                <TextBlock Grid.Row="1" Grid.Column="0"  Text="Incubadora Anhalzer: " VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Incubesa: " VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Genetica Nacional: " VerticalAlignment="Center"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5 5 0 0"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="5 5 0 0"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="5 5 0 0"/>
-            </Grid>
-
-            <Grid Margin="40 0 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Venta" HorizontalAlignment="Center" Margin="0 0 0 10"/>
-                <TextBlock Grid.Row="1" Grid.Column="0"  Text="KFC: " VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Pereira: " VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Gustapollo: " VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Faina: " VerticalAlignment="Center"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5 5 0 0"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="5 5 0 0"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="5 5 0 0"/>
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="5 5 0 0"/>
-            </Grid>
-
-            <Grid Margin="40 0 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Mortalidad (%)" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 5"/>
-                <TextBox Grid.Row="1" HorizontalAlignment="Stretch"/>
-                <TextBlock Grid.Row="2" Text="Liquidación" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 30 0 5"/>
-                <TextBox Grid.Row="3" HorizontalAlignment="Stretch"/>
-            </Grid>
-            
+            <Button Content="Insertar lote"/>
+            <Button Content="Eliminar ultimo lote"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Margin="30 10 0 0" Orientation="Horizontal" VerticalAlignment="Top">
-            <Button x:Name="AddNewRow" Content="Insertar otro lote" Margin="0 0 0 0" Width="Auto" Click="AddNewRow_Click" />
-            <Button x:Name="DeleteLastRow" Content="Eliminar ultimo lote" Margin="20 0 0 0" Click="DeleteLastRow_Click" />
-            <Button x:Name="PushData" Content="Guardar datos" Margin="20 0 0 0" Click="PushData_Click"/>
+        <!--Ingresos por Incubadora-->
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Ingreso por Incubadora" HorizontalAlignment="Center"/>
+            <controls:DataGrid 
+                HorizontalAlignment="Center"
+                IsReadOnly="False" 
+                AutoGenerateColumns="False">
+            </controls:DataGrid>
+            <Button Content="Insertar proveedor"/>
+            <Button Content="Eliminar ultimo proveedor"/>
+        </StackPanel>
+
+        <!--Ventas-->
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
+            <TextBlock Text="Ventas" HorizontalAlignment="Center"/>
+            <controls:DataGrid 
+                HorizontalAlignment="Center"
+                IsReadOnly="False" 
+                AutoGenerateColumns="False">
+            </controls:DataGrid>
+            <Button Content="Insertar cliente"/>
+            <Button Content="Eliminar ultimo cliente"/>
+        </StackPanel>
+        
+        <!--Mortalidad y liquidacion-->
+        <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Vertical">
+            <TextBlock Grid.Row="0" Text="Mortalidad (%)" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 5"/>
+            <TextBox Grid.Row="1" HorizontalAlignment="Stretch"/>
+            <TextBlock Grid.Row="2" Text="Liquidación" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 30 0 5"/>
+            <TextBox Grid.Row="3" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+        
+        <!--Guardar datos-->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
+            <Button x:Name="PushData" Content="Guardar datos" Click="PushData_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -19,42 +19,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FIFA.Views {
     public sealed partial class Input : Page {
-
-        public ObservableCollection<IngresoPorLote> InitialList { get; set; }
-
+        
         public Input() {
             this.InitializeComponent();
-            InitialList = IngresoPorLote.InitialList();
-            this.DataContext = InitialList;
         }
 
         private void AddNewRow_Click(object sender, RoutedEventArgs e) {
-            InitialList.Add(new IngresoPorLote ());
+            
         }
 
         private void PushData_Click(object sender, RoutedEventArgs e) {
-            string cnString = "lol u thought";
-            string cmdText = "insert into IngresoPorLote values (@Semana,@Lote,@LotePro,@Cantidad,@CantidadPro,@Fecha,@FechaPro)";
-            using (SqlConnection con = new SqlConnection(cnString))
-            using (SqlCommand cmd = new SqlCommand(cmdText, con)) {
-                con.Open();
-                foreach (IngresoPorLote i in InitialList) {
-                    cmd.Parameters.AddWithValue("@Semana", weekNumber.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Lote", i.Lote);
-                    cmd.Parameters.AddWithValue("@LotePro", i.LotePro);
-                    cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
-                    cmd.Parameters.AddWithValue("@CantidadPro", i.CantidadPro);
-                    cmd.Parameters.AddWithValue("@Fecha", i.Fecha);
-                    cmd.Parameters.AddWithValue("@FechaPro", i.FechaPro);
-                    cmd.ExecuteNonQuery();
-                    cmd.Parameters.Clear();
-                }
-                con.Close();
-            }
+            
         }
 
         private void DeleteLastRow_Click(object sender, RoutedEventArgs e) {
-            InitialList.RemoveAt(InitialList.Count - 1);
+
         }
     }
 }
