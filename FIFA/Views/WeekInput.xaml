@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="FIFA.Views.Input"
+    x:Class="FIFA.Views.WeekInput"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FIFA.Views"
@@ -73,7 +73,7 @@
         
         <!--Guardar datos-->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
-            <Button x:Name="PushData" Content="Guardar datos" Click="PushData_Click"/>
+            <Button x:Name="PushData" Content="Guardar datos"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -28,16 +28,16 @@ namespace FIFA
             this.InitializeComponent();
         }
 
-        private void globalButton_Click(object sender, RoutedEventArgs e) {
+        private void GlobalButton_Click(object sender, RoutedEventArgs e) {
             mainFrame.Navigate(typeof(Global));
         }
 
-        private void detailButton_Click(object sender, RoutedEventArgs e) {
-            mainFrame.Navigate(typeof(Detail));
+        private void OtherInputButton_Click(object sender, RoutedEventArgs e) {
+            mainFrame.Navigate(typeof(OtherInput));
         }
 
-        private void inputButton_Click(object sender, RoutedEventArgs e) {
-            mainFrame.Navigate(typeof(Input));
+        private void WeekInputButton_Click(object sender, RoutedEventArgs e) {
+            mainFrame.Navigate(typeof(WeekInput));
         }
     }
 }

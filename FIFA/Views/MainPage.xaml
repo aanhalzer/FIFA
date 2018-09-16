@@ -14,9 +14,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 10">
-            <Button x:Name="globalButton" Content="Global" Height="Auto" Width="Auto" Margin="10 0 10 0" Click="globalButton_Click"/>
-            <Button x:Name="detailButton" Content="Detalle" Height="Auto" Width="Auto" Margin="10 0 10 0" Click="detailButton_Click"/>
-            <Button x:Name="inputButton" Content="Ingreso datos" Height="Auto" Width="Auto" Margin="10 0 10 0" Click="inputButton_Click"/>
+            <Button x:Name="GlobalButton" Content="Global" Height="Auto" Width="Auto" Margin="10 0 10 0" Click="GlobalButton_Click"/>
+            <Button x:Name="WeekInputButton" Content="Ingresar/Editar semana" Height="Auto" Width="Auto" Margin="10 0 10 0" Click="WeekInputButton_Click"/>
+            <Button x:Name="OtherInputButton" Content="Ingresar otros datos" Height="Auto" Width="Auto" Margin="10 0 10 0" Click="OtherInputButton_Click"/>
         </StackPanel>
         <Frame x:Name="mainFrame" Grid.Row="1"/>
     </Grid>

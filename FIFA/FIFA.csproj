@@ -95,16 +95,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\TestGlobal.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Global.cs" />
+    <Compile Include="Models\Granja.cs" />
+    <Compile Include="Models\Incubadora.cs" />
+    <Compile Include="Models\IngresoPorIncubadora.cs" />
     <Compile Include="Models\IngresoPorLote.cs" />
-    <Compile Include="Views\Detail.xaml.cs">
-      <DependentUpon>Detail.xaml</DependentUpon>
+    <Compile Include="Models\Lote.cs" />
+    <Compile Include="Models\Venta.cs" />
+    <Compile Include="Views\OtherInput.xaml.cs">
+      <DependentUpon>OtherInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Global.xaml.cs">
       <DependentUpon>Global.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Input.xaml.cs">
-      <DependentUpon>Input.xaml</DependentUpon>
+    <Compile Include="Views\WeekInput.xaml.cs">
+      <DependentUpon>WeekInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -132,7 +138,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\Detail.xaml">
+    <Page Include="Views\OtherInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,7 +146,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Input.xaml">
+    <Page Include="Views\WeekInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +166,7 @@
       <Version>4.0.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

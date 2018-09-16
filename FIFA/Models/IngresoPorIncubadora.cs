@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace FIFA.Models
 {
-    class IngresoPorLote
+    class IngresoPorIncubadora
     {
         public string Semana { get; set; }
-        public int Lote { get; set; }
+        public string Incubadora { get; set; }
         public int Cantidad { get; set; }
-        public int Dia { get; set; }
     }
 }
