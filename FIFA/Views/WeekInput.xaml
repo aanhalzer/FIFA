@@ -9,6 +9,21 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style TargetType="Button" x:Name="WeekInputButton">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 5 5 20"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Name="WeekInputStackPanel">
+            <Setter Property="Padding" Value="15 10 15 10"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Name="InputLabels">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,64 +31,70 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" Orientation="Horizontal" Margin="30 20 0 0">
-            <TextBlock Text="Semana: " VerticalAlignment="Center"/>
-            <TextBox x:Name="weekNumber" Margin="5 0 0 0"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" Orientation="Horizontal" Margin="50 20 0 0">
+            <TextBlock Text="Semana: " VerticalAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="weekNumber" Margin="5 0 20 0" Width="120"/>
+            <Button Content="Crear/Editar semana"/>
         </StackPanel>
         
         <!--Ingresos por Lote-->
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-            <TextBlock Text="Ingreso por Lote" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
+            <TextBlock Text="Ingreso por Lote" Style="{StaticResource InputLabels}"/>
             <controls:DataGrid 
                 HorizontalAlignment="Center"
                 IsReadOnly="False" 
                 AutoGenerateColumns="False">
             </controls:DataGrid>
-            <Button Content="Insertar lote"/>
-            <Button Content="Eliminar ultimo lote"/>
         </StackPanel>
 
         <!--Ingresos por Incubadora-->
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-            <TextBlock Text="Ingreso por Incubadora" HorizontalAlignment="Center"/>
-            <controls:DataGrid 
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
+            <TextBlock Text="Ingreso por Incubadora" Style="{StaticResource InputLabels}"/>
+            <controls:DataGrid
                 HorizontalAlignment="Center"
                 IsReadOnly="False" 
                 AutoGenerateColumns="False">
             </controls:DataGrid>
-            <Button Content="Insertar proveedor"/>
-            <Button Content="Eliminar ultimo proveedor"/>
         </StackPanel>
 
         <!--Ventas-->
-        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
-            <TextBlock Text="Ventas" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
+            <TextBlock Text="Ventas" Style="{StaticResource InputLabels}"/>
             <controls:DataGrid 
                 HorizontalAlignment="Center"
                 IsReadOnly="False" 
                 AutoGenerateColumns="False">
             </controls:DataGrid>
-            <Button Content="Insertar cliente"/>
-            <Button Content="Eliminar ultimo cliente"/>
         </StackPanel>
         
         <!--Mortalidad y liquidacion-->
-        <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Vertical">
-            <TextBlock Grid.Row="0" Text="Mortalidad (%)" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 5"/>
-            <TextBox Grid.Row="1" HorizontalAlignment="Stretch"/>
-            <TextBlock Grid.Row="2" Text="Liquidación" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 30 0 5"/>
-            <TextBox Grid.Row="3" HorizontalAlignment="Stretch"/>
+        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
+            <TextBlock Grid.Row="0" Text="Mortalidad (%)" Style="{StaticResource InputLabels}"/>
+            <TextBox Grid.Row="1" HorizontalAlignment="Center" Width="60"/>
+            <TextBlock Grid.Row="2" Text="Liquidación" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
+            <TextBox Grid.Row="3" HorizontalAlignment="Center" Width="120"/>
         </StackPanel>
         
-        <!--Guardar datos-->
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
-            <Button x:Name="PushData" Content="Guardar datos"/>
+        <!--Botones-->
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical">
+            <Button Content="Insertar lote" Style="{StaticResource WeekInputButton}"/>
+            <Button Content="Eliminar ultimo lote" Style="{StaticResource WeekInputButton}"/>
         </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <Button Content="Insertar incubadora" Style="{StaticResource WeekInputButton}"/>
+            <Button Content="Eliminar ultima incubadora" Style="{StaticResource WeekInputButton}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+            <Button Content="Insertar cliente" Style="{StaticResource WeekInputButton}"/>
+            <Button Content="Eliminar ultimo cliente" Style="{StaticResource WeekInputButton}"/>
+        </StackPanel>
+        <Button Grid.Row="2" Grid.Column="3" x:Name="PushData" Content="Guardar datos" 
+                Style="{StaticResource WeekInputButton}"/>
     </Grid>
 </Page>
