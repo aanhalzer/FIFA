@@ -23,6 +23,11 @@ namespace FIFA
     /// </summary>
     sealed partial class App : Application
     {
+        private readonly string connectionString_ = 
+            @"hello";
+        public string ConnectionString {
+            get { return connectionString_; }
+        }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -32,8 +37,6 @@ namespace FIFA
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
-
-        public static MobileServiceClient MobileService = new MobileServiceClient("https://fifaavisid.azurewebsites.net");
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FIFA.ViewModels
 {
@@ -50,5 +51,37 @@ namespace FIFA.ViewModels
             set { granjaNombre_ = value; OnPropertyChanged("GranjaNombre"); }
         }
 
+        private ICommand _nuevoLote;    
+        public ICommand NuevoLote {
+            get { return _nuevoLote = _nuevoLote ?? new DelegateCommand(NuevoLoteExecute); }
+        }
+        private void NuevoLoteExecute() {
+            NumeroLote = 1;
+            GranjaLote = "SIBONEY";
+        }
+
+        private ICommand _nuevaInc;
+        public ICommand NuevaInc {
+            get { return _nuevaInc = _nuevaInc ?? new DelegateCommand(NuevaIncExecute); }
+        }
+        private void NuevaIncExecute() {
+
+        }
+
+        private ICommand _nuevoCliente;
+        public ICommand NuevoCliente {
+            get { return _nuevoCliente = _nuevoCliente ?? new DelegateCommand(NuevoClienteExecute); }
+        }
+        private void NuevoClienteExecute() {
+
+        }
+
+        private ICommand _nuevaGranja;
+        public ICommand NuevaGranja {
+            get { return _nuevaGranja = _nuevaGranja ?? new DelegateCommand(NuevaGranjaExecute); }
+        }
+        private void NuevaGranjaExecute() {
+
+        }
     }
 }
