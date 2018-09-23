@@ -104,6 +104,7 @@
     <Compile Include="Models\Lote.cs" />
     <Compile Include="Models\Venta.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
+    <Compile Include="ViewModels\OtherInputViewModel.cs" />
     <Compile Include="ViewModels\WeekInputViewModel.cs" />
     <Compile Include="Views\OtherInput.xaml.cs">
       <DependentUpon>OtherInput.xaml</DependentUpon>

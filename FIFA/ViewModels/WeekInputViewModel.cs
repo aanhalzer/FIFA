@@ -26,5 +26,10 @@ namespace FIFA.ViewModels
             set { liquidacion_ = value; OnPropertyChanged("Liquidacion"); }
         }
 
+        private decimal precio_ = 0;
+        public decimal Precio {
+            get { return precio_; }
+            set { precio_ = value; OnPropertyChanged("Precio"); }
+        }
     }
 }

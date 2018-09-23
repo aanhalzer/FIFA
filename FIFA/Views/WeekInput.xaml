@@ -40,20 +40,20 @@
             <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
-
+        
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" Orientation="Horizontal" Margin="50 20 0 0">
             <TextBlock Text="Semana: " VerticalAlignment="Center" FontSize="20"/>
-            <TextBox Margin="5 0 20 0" Width="100" Text="{Binding Semana, Mode=TwoWay}"/>
+            <TextBox Margin="5 0 20 0" Width="110" Text="{Binding Semana, Mode=TwoWay}"/>
             <Button Content="Crear/Editar semana"/>
         </StackPanel>
-        
+
         <!--Ingresos por Lote-->
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
             <TextBlock Text="Ingreso por Lote" Style="{StaticResource InputLabels}"/>
             <controls:DataGrid 
-                HorizontalAlignment="Center"
-                IsReadOnly="False" 
-                AutoGenerateColumns="False">
+            HorizontalAlignment="Center"
+            IsReadOnly="False" 
+            AutoGenerateColumns="False">
             </controls:DataGrid>
         </StackPanel>
 
@@ -61,9 +61,9 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
             <TextBlock Text="Ingreso por Incubadora" Style="{StaticResource InputLabels}"/>
             <controls:DataGrid
-                HorizontalAlignment="Center"
-                IsReadOnly="False" 
-                AutoGenerateColumns="False">
+            HorizontalAlignment="Center"
+            IsReadOnly="False" 
+            AutoGenerateColumns="False">
             </controls:DataGrid>
         </StackPanel>
 
@@ -71,20 +71,22 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
             <TextBlock Text="Ventas" Style="{StaticResource InputLabels}"/>
             <controls:DataGrid 
-                HorizontalAlignment="Center"
-                IsReadOnly="False" 
-                AutoGenerateColumns="False">
+            HorizontalAlignment="Center"
+            IsReadOnly="False" 
+            AutoGenerateColumns="False">
             </controls:DataGrid>
         </StackPanel>
-        
+
         <!--Mortalidad y liquidacion-->
         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
-            <TextBlock Grid.Row="0" Text="Mortalidad (%)" Style="{StaticResource InputLabels}"/>
-            <TextBox Grid.Row="1" HorizontalAlignment="Center" Width="60" Text="{Binding Mortalidad, Mode=TwoWay}"/>
-            <TextBlock Grid.Row="2" Text="Liquidación" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
-            <TextBox Grid.Row="3" HorizontalAlignment="Center" Width="120" Text="{Binding Liquidacion, Mode=TwoWay}"/>
+            <TextBlock Text="Mortalidad (%)" Style="{StaticResource InputLabels}"/>
+            <TextBox HorizontalAlignment="Center" Width="60" Text="{Binding Mortalidad, Mode=TwoWay}"/>
+            <TextBlock Text="Liquidación" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
+            <TextBox HorizontalAlignment="Center" Width="120" Text="{Binding Liquidacion, Mode=TwoWay}"/>
+            <TextBlock Text="Precio" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
+            <TextBox HorizontalAlignment="Center" Width="120" Text="{Binding Precio, Mode=TwoWay}"/>
         </StackPanel>
-        
+
         <!--Botones-->
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical">
             <Button Content="Insertar lote" Style="{StaticResource WeekInputButton}"/>
@@ -99,6 +101,6 @@
             <Button Content="Eliminar ultimo cliente" Style="{StaticResource WeekInputButton}"/>
         </StackPanel>
         <Button Grid.Row="2" Grid.Column="3" x:Name="PushData" Content="Guardar datos" 
-                Style="{StaticResource WeekInputButton}"/>
+            Style="{StaticResource WeekInputButton}"/>
     </Grid>
 </Page>
