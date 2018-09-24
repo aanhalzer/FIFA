@@ -53,7 +53,13 @@
             <controls:DataGrid 
             HorizontalAlignment="Center"
             IsReadOnly="False" 
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding Lotes, Mode=TwoWay}">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="Lote" Binding="{Binding Lote}"/>
+                    <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+                    <controls:DataGridTextColumn Header="Dia" Binding="{Binding Dia}"/>
+                </controls:DataGrid.Columns>
             </controls:DataGrid>
         </StackPanel>
 
@@ -63,7 +69,12 @@
             <controls:DataGrid
             HorizontalAlignment="Center"
             IsReadOnly="False" 
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding Incubadoras, Mode=TwoWay}">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="Incubadora" Binding="{Binding Incubadora}"/>
+                    <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+                </controls:DataGrid.Columns>
             </controls:DataGrid>
         </StackPanel>
 
@@ -73,7 +84,12 @@
             <controls:DataGrid 
             HorizontalAlignment="Center"
             IsReadOnly="False" 
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding Ventas, Mode=TwoWay}">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}"/>
+                    <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+                </controls:DataGrid.Columns>
             </controls:DataGrid>
         </StackPanel>
 
@@ -89,16 +105,16 @@
 
         <!--Botones-->
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical">
-            <Button Content="Insertar lote" Style="{StaticResource WeekInputButton}"/>
-            <Button Content="Eliminar ultimo lote" Style="{StaticResource WeekInputButton}"/>
+            <Button Content="Insertar lote" Style="{StaticResource WeekInputButton}" Command="{Binding LotesAdd, Mode=OneWay}"/>
+            <Button Content="Eliminar ultimo lote" Style="{StaticResource WeekInputButton}" Command="{Binding LotesRemove, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
-            <Button Content="Insertar incubadora" Style="{StaticResource WeekInputButton}"/>
-            <Button Content="Eliminar ultima incubadora" Style="{StaticResource WeekInputButton}"/>
+            <Button Content="Insertar incubadora" Style="{StaticResource WeekInputButton}" Command="{Binding IncubadorasAdd, Mode=OneWay}"/>
+            <Button Content="Eliminar ultima incubadora" Style="{StaticResource WeekInputButton}" Command="{Binding IncubadorasRemove, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
-            <Button Content="Insertar cliente" Style="{StaticResource WeekInputButton}"/>
-            <Button Content="Eliminar ultimo cliente" Style="{StaticResource WeekInputButton}"/>
+            <Button Content="Insertar cliente" Style="{StaticResource WeekInputButton}" Command="{Binding VentasAdd, Mode=OneWay}"/>
+            <Button Content="Eliminar ultimo cliente" Style="{StaticResource WeekInputButton}" Command="{Binding VentasRemove, Mode=TwoWay}"/>
         </StackPanel>
         <Button Grid.Row="2" Grid.Column="3" x:Name="PushData" Content="Guardar datos" 
             Style="{StaticResource WeekInputButton}"/>

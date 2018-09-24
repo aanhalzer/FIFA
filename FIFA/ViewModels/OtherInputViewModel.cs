@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,8 +59,22 @@ namespace FIFA.ViewModels
             get { return _nuevoLote = _nuevoLote ?? new DelegateCommand(NuevoLoteExecute); }
         }
         private void NuevoLoteExecute() {
-            NumeroLote = 1;
-            GranjaLote = "SIBONEY";
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)) {
+                using (SqlCommand cmd = new SqlCommand()) {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"INSERT INTO Lote VALUES (@NumeroLote, @GranjaLote)";
+                    cmd.Parameters.AddWithValue("@NumeroLote", NumeroLote);
+                    cmd.Parameters.AddWithValue("@GranjaLote", GranjaLote);
+                    try {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e) {
+                        Debug.WriteLine(e.Message);
+                    }
+                }
+            }
         }
 
         private ICommand _nuevaInc;
@@ -65,7 +82,22 @@ namespace FIFA.ViewModels
             get { return _nuevaInc = _nuevaInc ?? new DelegateCommand(NuevaIncExecute); }
         }
         private void NuevaIncExecute() {
-
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)) {
+                using (SqlCommand cmd = new SqlCommand()) {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"INSERT INTO Incubadora VALUES (@IncAbre, @IncNombre)";
+                    cmd.Parameters.AddWithValue("@IncAbre", IncAbre);
+                    cmd.Parameters.AddWithValue("@IncNombre", IncNombre);
+                    try {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e) {
+                        Debug.WriteLine(e.Message);
+                    }
+                }
+            }
         }
 
         private ICommand _nuevoCliente;
@@ -73,7 +105,22 @@ namespace FIFA.ViewModels
             get { return _nuevoCliente = _nuevoCliente ?? new DelegateCommand(NuevoClienteExecute); }
         }
         private void NuevoClienteExecute() {
-
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)) {
+                using (SqlCommand cmd = new SqlCommand()) {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"INSERT INTO Cliente VALUES (@ClienteAbre, @ClienteNombre)";
+                    cmd.Parameters.AddWithValue("@ClienteAbre", ClienteAbre);
+                    cmd.Parameters.AddWithValue("@ClienteNombre", ClienteNombre);
+                    try {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e) {
+                        Debug.WriteLine(e.Message);
+                    }
+                }
+            }
         }
 
         private ICommand _nuevaGranja;
@@ -81,7 +128,21 @@ namespace FIFA.ViewModels
             get { return _nuevaGranja = _nuevaGranja ?? new DelegateCommand(NuevaGranjaExecute); }
         }
         private void NuevaGranjaExecute() {
-
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)) {
+                using (SqlCommand cmd = new SqlCommand()) {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"INSERT INTO Granja VALUES (@GranjaNombre)";
+                    cmd.Parameters.AddWithValue("@GranjaNombre", GranjaNombre);
+                    try {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e) {
+                        Debug.WriteLine(e.Message);
+                    }
+                }
+            }
         }
     }
 }
