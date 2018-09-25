@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -36,19 +38,22 @@ namespace FIFA.ViewModels
             set { precio_ = value; OnPropertyChanged("Precio"); }
         }
 
-        private ObservableCollection<IngresoPorLote> lotes_ = new ObservableCollection<IngresoPorLote>();
+        private ObservableCollection<IngresoPorLote> lotes_ = 
+            new ObservableCollection<IngresoPorLote>();
         public ObservableCollection<IngresoPorLote> Lotes {
             get { return lotes_; }
             set { lotes_ = value; OnPropertyChanged("Lotes"); }
         }
 
-        private ObservableCollection<IngresoPorIncubadora> incubadoras_ = new ObservableCollection<IngresoPorIncubadora>();
+        private ObservableCollection<IngresoPorIncubadora> incubadoras_ = 
+            new ObservableCollection<IngresoPorIncubadora>();
         public ObservableCollection<IngresoPorIncubadora> Incubadoras {
             get { return incubadoras_ ; }
             set { incubadoras_  = value; OnPropertyChanged("Incubadoras"); }
         }
 
-        private ObservableCollection<Venta> ventas_ = new ObservableCollection<Venta>();
+        private ObservableCollection<Venta> ventas_ = 
+            new ObservableCollection<Venta>();
         public ObservableCollection<Venta> Ventas {
             get { return ventas_; }
             set { ventas_ = value; OnPropertyChanged("Venta"); }
@@ -100,6 +105,96 @@ namespace FIFA.ViewModels
         }
         private void VentasRemoveExecute() {
             Ventas.RemoveAt(Ventas.Count - 1);
+        }
+
+        private ICommand guardar_;
+        public ICommand Guardar {
+            get { return guardar_ = guardar_ ?? new DelegateCommand(GuardarExecute); }
+        }
+        private void GuardarExecute() {
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)) {
+                using (SqlCommand cmd = new SqlCommand()) {
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.Text;
+                    
+                    // Ingreso por lote
+                    cmd.CommandText = @"INSERT INTO IngresoPorLote VALUES (@Semana, @Lote, @Cantidad, @Dia)";
+                    conn.Open();
+                    foreach (IngresoPorLote i in Lotes) {
+                        cmd.Parameters.AddWithValue("@Semana", Semana);
+                        cmd.Parameters.AddWithValue("@Lote", i.Lote);
+                        cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
+                        cmd.Parameters.AddWithValue("@Dia", i.Dia);
+                        try {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException e) {
+                            Debug.WriteLine(e.Message);
+                        }
+                        cmd.Parameters.Clear();
+                    }
+                    conn.Close();
+
+                    // Ingreso por incubadora
+                    cmd.CommandText = @"INSERT INTO IngresoPorIncubadora VALUES (@Semana, @Incubadora, @Cantidad)";
+                    conn.Open();
+                    foreach (IngresoPorIncubadora i in Incubadoras) {
+                        cmd.Parameters.AddWithValue("@Semana", Semana);
+                        cmd.Parameters.AddWithValue("@Incubadora", i.Incubadora);
+                        cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
+                        try {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException e) {
+                            Debug.WriteLine(e.Message);
+                        }
+                        cmd.Parameters.Clear();
+                    }
+                    conn.Close();
+
+                    // Ventas
+                    cmd.CommandText = @"INSERT INTO Venta VALUES (@Semana, @Cliente, @Cantidad)";
+                    conn.Open();
+                    foreach (Venta i in Ventas) {
+                        cmd.Parameters.AddWithValue("@Semana", Semana);
+                        cmd.Parameters.AddWithValue("@Cliente", i.Cliente);
+                        cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
+                        try {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException e) {
+                            Debug.WriteLine(e.Message);
+                        }
+                        cmd.Parameters.Clear();
+                    }
+                    conn.Close();
+
+                    // Otros
+                    cmd.CommandText = @"INSERT INTO Global VALUES 
+                                        (@Semana, @Ingreso, @IngresoEdit, @Mortalidad, @MortalidadEdit, 
+                                        @Precio, @PrecioEdit, @Venta, @VentaEdit, @Liquidacion, @LiquidacionEdit)";
+                    cmd.Parameters.AddWithValue("@Semana", Semana);
+                    cmd.Parameters.AddWithValue("@Ingreso", Incubadoras.Sum(item => item.Cantidad));
+                    cmd.Parameters.AddWithValue("@IngresoEdit", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.AddWithValue("@Mortalidad", Mortalidad);
+                    cmd.Parameters.AddWithValue("@MortalidadEdit", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.AddWithValue("@Precio", Precio);
+                    cmd.Parameters.AddWithValue("@PrecioEdit", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.AddWithValue("@Venta", Ventas.Sum(item => item.Cantidad));
+                    cmd.Parameters.AddWithValue("@VentaEdit", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.AddWithValue("@Liquidacion", Liquidacion);
+                    cmd.Parameters.AddWithValue("@LiquidacionEdit", SqlDbType.Bit).Value = false;
+                    try {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        conn.Close();
+                    }
+                    catch (SqlException e) {
+                        Debug.WriteLine(e.Message);
+                    }
+                }
+            }
         }
     }
 }
