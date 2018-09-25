@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
 
 namespace FIFA.ViewModels
 {
@@ -109,9 +110,9 @@ namespace FIFA.ViewModels
 
         private ICommand guardar_;
         public ICommand Guardar {
-            get { return guardar_ = guardar_ ?? new DelegateCommand(GuardarExecute); }
+            get { return guardar_ = guardar_ ?? new DelegateCommand(GuardarExecuteAsync); }
         }
-        private void GuardarExecute() {
+        private async void GuardarExecuteAsync() {
             using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)) {
                 using (SqlCommand cmd = new SqlCommand()) {
                     cmd.Connection = conn;
@@ -195,6 +196,24 @@ namespace FIFA.ViewModels
                     }
                 }
             }
+            await ShowContentDialogAsync("Crear Semana", "La semana " + Semana + " ha sido creada.");
+            Semana = "00-0000";
+            Incubadoras.Clear();
+            Lotes.Clear();
+            Ventas.Clear();
+            Liquidacion = 0;
+            Mortalidad = 6;
+            Precio = 0;
+        }
+
+        private async Task ShowContentDialogAsync(string title, string content) {
+            ContentDialog dialog = new ContentDialog() {
+                Title = title,
+                Content = content,
+                CloseButtonText = "Ok"
+            };
+
+            await dialog.ShowAsync();
         }
     }
 }
