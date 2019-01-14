@@ -1,29 +1,85 @@
-﻿<Page
+﻿<Page 
     x:Class="FIFA.Views.Global"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FIFA.Views"
+    xmlns:vm="using:FIFA.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.DataContext>
+        <vm:GlobalViewModel/>
+    </Page.DataContext>
+    
     <Grid>
-        <controls:DataGrid HorizontalScrollBarVisibility="Visible" Margin="15" IsEnabled="False" x:Name="TestGrid">
+        <Button Content="Press" Command="{Binding SemanasUpdate, Mode=OneWay}"/>
+        <controls:DataGrid HorizontalScrollBarVisibility="Visible" Margin="15" AutoGenerateColumns="False"
+                           RowDetailsVisibilityMode="VisibleWhenSelected" 
+                           ItemsSource="{Binding Semanas, Mode=TwoWay}">
+            
+            <!--Columns to display-->
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="Semana"/>
-                <controls:DataGridTextColumn Header="Ingreso"/>
-                <controls:DataGridTextColumn Header="Mortalidad"/>
-                <controls:DataGridTextColumn Header="Semana KFC"/>
-                <controls:DataGridTextColumn Header="Proyectado KFC"/>
-                <controls:DataGridTextColumn Header="Entrega KFC"/>
-                <controls:DataGridTextColumn Header="Precio"/>
-                <controls:DataGridTextColumn Header="Semana Pie" />
-                <controls:DataGridTextColumn Header="Venta"/>
-                <controls:DataGridTextColumn Header="Liquidacion"/>
-                <controls:DataGridTextColumn Header="Saldo"/>
+                <controls:DataGridTextColumn Header="Semana" Binding="{Binding Semana}"/>
+                <controls:DataGridTextColumn Header="Ingreso" Binding="{Binding Ingreso}"/>
+                <controls:DataGridTextColumn Header="Mortalidad" Binding="{Binding Mortalidad}"/>
+                <controls:DataGridTextColumn Header="Semana KFC" Binding="{Binding SemanaKFC}"/>
+                <controls:DataGridTextColumn Header="Proyectado KFC" Binding="{Binding ProyectadoKFC}"/>
+                <controls:DataGridTextColumn Header="Entrega KFC" Binding="{Binding EntregaKFC}"/>
+                <controls:DataGridTextColumn Header="Precio" Binding="{Binding Precio}"/>
+                <controls:DataGridTextColumn Header="Semana Pie" Binding="{Binding SemanaPie}"/>
+                <controls:DataGridTextColumn Header="Venta" Binding="{Binding Venta}"/>
+                <controls:DataGridTextColumn Header="Liquidacion" Binding="{Binding Liquidacion}"/>
+                <controls:DataGridTextColumn Header="Saldo" Binding="{Binding Saldo}"/>
             </controls:DataGrid.Columns>
+
+            <!--Template for the row expandable details-->
+            <controls:DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="20,10" Padding="5" Spacing="3">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Ingreso por incubadora" Margin="0,0,30,10"/>
+                            <ListView ItemsSource="{Binding IngresoPorIncubadoras}" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Incubadora}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Cantidad}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0,0,0,0"/>
+                                        <Setter Property="Margin" Value="0,-17,0,0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Venta por cliente" Margin="0,0,0,10"/>
+                            <ListView ItemsSource="{Binding VentasPorCliente}" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Cliente}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Cantidad}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0,0,0,0"/>
+                                        <Setter Property="Margin" Value="0,-17,0,0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:DataGrid.RowDetailsTemplate>
         </controls:DataGrid>
     </Grid>
 </Page>

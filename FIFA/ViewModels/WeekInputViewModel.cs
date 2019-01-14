@@ -126,49 +126,29 @@ namespace FIFA.ViewModels
                         cmd.Parameters.AddWithValue("@Lote", i.Lote);
                         cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
                         cmd.Parameters.AddWithValue("@Dia", i.Dia);
-                        try {
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException e) {
-                            Debug.WriteLine(e.Message);
-                        }
+                        cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                     }
-                    conn.Close();
 
                     // Ingreso por incubadora
                     cmd.CommandText = @"INSERT INTO IngresoPorIncubadora VALUES (@Semana, @Incubadora, @Cantidad)";
-                    conn.Open();
                     foreach (IngresoPorIncubadora i in Incubadoras) {
                         cmd.Parameters.AddWithValue("@Semana", Semana);
                         cmd.Parameters.AddWithValue("@Incubadora", i.Incubadora);
                         cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
-                        try {
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException e) {
-                            Debug.WriteLine(e.Message);
-                        }
+                        cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                     }
-                    conn.Close();
 
                     // Ventas
                     cmd.CommandText = @"INSERT INTO Venta VALUES (@Semana, @Cliente, @Cantidad)";
-                    conn.Open();
                     foreach (Venta i in Ventas) {
                         cmd.Parameters.AddWithValue("@Semana", Semana);
                         cmd.Parameters.AddWithValue("@Cliente", i.Cliente);
                         cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
-                        try {
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException e) {
-                            Debug.WriteLine(e.Message);
-                        }
+                        cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                     }
-                    conn.Close();
 
                     // Otros
                     cmd.CommandText = @"INSERT INTO Global VALUES 
@@ -185,15 +165,8 @@ namespace FIFA.ViewModels
                     cmd.Parameters.AddWithValue("@VentaEdit", SqlDbType.Bit).Value = false;
                     cmd.Parameters.AddWithValue("@Liquidacion", Liquidacion);
                     cmd.Parameters.AddWithValue("@LiquidacionEdit", SqlDbType.Bit).Value = false;
-                    try {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        cmd.Parameters.Clear();
-                        conn.Close();
-                    }
-                    catch (SqlException e) {
-                        Debug.WriteLine(e.Message);
-                    }
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
             }
             await ShowContentDialogAsync("Crear Semana", "La semana " + Semana + " ha sido creada.");
@@ -212,7 +185,6 @@ namespace FIFA.ViewModels
                 Content = content,
                 CloseButtonText = "Ok"
             };
-
             await dialog.ShowAsync();
         }
     }

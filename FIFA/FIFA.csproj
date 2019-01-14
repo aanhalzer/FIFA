@@ -105,6 +105,7 @@
     <Compile Include="Models\Venta.cs" />
     <Compile Include="ViewModels\Converters\DecimalConverter.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
+    <Compile Include="ViewModels\GlobalViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
     <Compile Include="ViewModels\OtherInputViewModel.cs" />
     <Compile Include="ViewModels\WeekInputViewModel.cs" />

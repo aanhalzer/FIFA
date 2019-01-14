@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FIFA.Models
 {
-    class Global
-    {
+    class Global {
+        // From SQL Global table
         public string Semana { get; set; }
         public int Ingreso { get; set; }
         public bool IngresoEdit { get; set; }
@@ -19,5 +20,16 @@ namespace FIFA.Models
         public bool VentaEdit { get; set; }
         public int Liquidacion { get; set; }
         public bool LiquidacionEdit { get; set; }
+        public int Saldo { get; set; }
+        public int ProyectadoKFC { get; set; }
+
+        // From other tables
+        public ObservableCollection<IngresoPorIncubadora> IngresoPorIncubadoras { get; set; }
+        public ObservableCollection<Venta> VentasPorCliente { get; set; }
+
+        // Locally processed variables
+        public string SemanaKFC { get; set; }
+        public int EntregaKFC { get; set; }
+        public string SemanaPie { get; set; }
     }
 }
