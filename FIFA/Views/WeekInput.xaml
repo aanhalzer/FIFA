@@ -37,10 +37,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.25*"/>
-            <ColumnDefinition Width="0.25*"/>
-            <ColumnDefinition Width="0.25*"/>
-            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.40*"/>
+            <ColumnDefinition Width="0.20*"/>
+            <ColumnDefinition Width="0.20*"/>
+            <ColumnDefinition Width="0.20*"/>
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" Orientation="Horizontal" Margin="50 20 0 0">
@@ -56,11 +56,16 @@
             HorizontalAlignment="Center"
             IsReadOnly="False" 
             AutoGenerateColumns="False"
-            ItemsSource="{Binding Lotes, Mode=TwoWay}">
+            VerticalScrollBarVisibility="Visible"
+            Height="425"
+            ItemsSource="{Binding Lotes, Mode=TwoWay}" ColumnWidth="SizeToHeader">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Header="Lote" Binding="{Binding Lote}"/>
                     <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
                     <controls:DataGridTextColumn Header="Dia" Binding="{Binding Dia}"/>
+                    <controls:DataGridTextColumn Header="Descabece" Binding="{Binding Descabece}"/>
+                    <controls:DataGridTextColumn Header="Sale KFC" Binding="{Binding SaleKFC}"/>
+                    <controls:DataGridTextColumn Header="Sale Pie" Binding="{Binding SalePie}"/>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </StackPanel>
@@ -71,7 +76,9 @@
             <controls:DataGrid
             HorizontalAlignment="Center"
             IsReadOnly="False" 
+            Height="425"
             AutoGenerateColumns="False"
+            VerticalScrollBarVisibility="Visible"
             ItemsSource="{Binding Incubadoras, Mode=TwoWay}">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Header="Incubadora" Binding="{Binding Incubadora}"/>
@@ -86,7 +93,9 @@
             <controls:DataGrid 
             HorizontalAlignment="Center"
             IsReadOnly="False" 
+            Height="425"
             AutoGenerateColumns="False"
+            VerticalScrollBarVisibility="Visible"
             ItemsSource="{Binding Ventas, Mode=TwoWay}">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}"/>

@@ -8,6 +8,10 @@ namespace FIFA.Models
 {
     class IngresoPorIncubadora
     {
+        public IngresoPorIncubadora() {
+            Incubadora = "N/A";
+        }
+
         public string Semana { get; set; }
         public string Incubadora { get; set; }
         public int Cantidad { get; set; }

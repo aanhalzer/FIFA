@@ -12,5 +12,8 @@ namespace FIFA.Models
         public int Lote { get; set; }
         public int Cantidad { get; set; }
         public int Dia { get; set; }
+        public int Descabece { get; set; }
+        public int SaleKFC { get; set; }
+        public int SalePie { get; set; }
     }
 }
