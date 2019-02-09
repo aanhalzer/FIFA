@@ -33,6 +33,12 @@ namespace FIFA.ViewModels
             set { liquidacion_ = value; OnPropertyChanged("Liquidacion"); }
         }
 
+        private int saldo_ = 0;
+        public int Saldo {
+            get { return saldo_; }
+            set { saldo_ = value; OnPropertyChanged("Saldo"); }
+        }
+
         private decimal precio_ = 0;
         public decimal Precio {
             get { return precio_; }

@@ -15,5 +15,11 @@ namespace FIFA.Models
         public int Descabece { get; set; }
         public int SaleKFC { get; set; }
         public int SalePie { get; set; }
+
+        public IngresoPorLote() {
+            Descabece = 32;
+            SaleKFC = 35;
+            SalePie = 50;
+        }
     }
 }

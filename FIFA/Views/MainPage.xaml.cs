@@ -26,6 +26,7 @@ namespace FIFA
         public MainPage()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(Global));
         }
 
         private void GlobalButton_Click(object sender, RoutedEventArgs e) {

@@ -104,12 +104,14 @@
             </controls:DataGrid>
         </StackPanel>
 
-        <!--Mortalidad y liquidacion-->
+        <!--Mortalidad, liquidacion, precio, saldo-->
         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
             <TextBlock Text="Mortalidad (%)" Style="{StaticResource InputLabels}"/>
             <TextBox HorizontalAlignment="Center" Width="60" Text="{Binding Mortalidad, Mode=TwoWay}"/>
             <TextBlock Text="Liquidación" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
             <TextBox HorizontalAlignment="Center" Width="120" Text="{Binding Liquidacion, Mode=TwoWay}"/>
+            <TextBlock Text="Saldo" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
+            <TextBox HorizontalAlignment="Center" Width="120" Text="{Binding Saldo, Mode=TwoWay}"/>
             <TextBlock Text="Precio" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
             <TextBox HorizontalAlignment="Center" Width="120" 
                      Text="{Binding Precio, Mode=TwoWay, Converter={StaticResource DecimalConverter}}"/>

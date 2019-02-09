@@ -15,10 +15,14 @@
     </Page.DataContext>
     
     <Grid>
-        <Button Content="Press" Command="{Binding SemanasUpdate, Mode=OneWay}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <controls:DataGrid HorizontalScrollBarVisibility="Visible" Margin="15" AutoGenerateColumns="False"
                            RowDetailsVisibilityMode="VisibleWhenSelected" 
-                           ItemsSource="{Binding Semanas, Mode=TwoWay}">
+                           ItemsSource="{Binding Semanas, Mode=TwoWay}"
+                           Grid.Row="0">
             
             <!--Columns to display-->
             <controls:DataGrid.Columns>
@@ -81,5 +85,7 @@
                 </DataTemplate>
             </controls:DataGrid.RowDetailsTemplate>
         </controls:DataGrid>
+        
+        <Button Content="Ver datos" Command="{Binding SemanasUpdate, Mode=OneWay}" Grid.Row="1" Margin="20"/>
     </Grid>
 </Page>
