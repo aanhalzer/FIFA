@@ -21,15 +21,14 @@ namespace FIFA.Models
         public int Liquidacion { get; set; }
         public bool LiquidacionEdit { get; set; }
         public int Saldo { get; set; }
-        public int ProyectadoKFC { get; set; }
 
         // From other tables
         public ObservableCollection<IngresoPorIncubadora> IngresoPorIncubadoras { get; set; }
         public ObservableCollection<Venta> VentasPorCliente { get; set; }
 
-        // Locally processed variables
-        public string SemanaKFC { get; set; }
-        public int EntregaKFC { get; set; }
-        public string SemanaPie { get; set; }
+        // Processed from other tables
+        public Dictionary<string, int> Descabece { get; set; }
+        public Dictionary<string, int> SaleKFC { get; set; }
+        public Dictionary<string, int> SalePie { get; set; }
     }
 }

@@ -29,11 +29,7 @@
                 <controls:DataGridTextColumn Header="Semana" Binding="{Binding Semana}"/>
                 <controls:DataGridTextColumn Header="Ingreso" Binding="{Binding Ingreso}"/>
                 <controls:DataGridTextColumn Header="Mortalidad" Binding="{Binding Mortalidad}"/>
-                <controls:DataGridTextColumn Header="Semana KFC" Binding="{Binding SemanaKFC}"/>
-                <controls:DataGridTextColumn Header="Proyectado KFC" Binding="{Binding ProyectadoKFC}"/>
-                <controls:DataGridTextColumn Header="Entrega KFC" Binding="{Binding EntregaKFC}"/>
                 <controls:DataGridTextColumn Header="Precio" Binding="{Binding Precio}"/>
-                <controls:DataGridTextColumn Header="Semana Pie" Binding="{Binding SemanaPie}"/>
                 <controls:DataGridTextColumn Header="Venta" Binding="{Binding Venta}"/>
                 <controls:DataGridTextColumn Header="Liquidacion" Binding="{Binding Liquidacion}"/>
                 <controls:DataGridTextColumn Header="Saldo" Binding="{Binding Saldo}"/>
@@ -43,13 +39,13 @@
             <controls:DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="20,10" Padding="5" Spacing="3">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Ingreso por incubadora" Margin="0,0,30,10"/>
+                        <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                            <TextBlock Text="Ingreso por incubadora" Margin="0,0,0,10"/>
                             <ListView ItemsSource="{Binding IngresoPorIncubadoras}" SelectionMode="None">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Incubadora}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Incubadora}" Margin="0,0,20,0"/>
                                             <TextBlock Text="{Binding Cantidad}"/>
                                         </StackPanel>
                                     </DataTemplate>
@@ -62,14 +58,71 @@
                                 </ListView.ItemContainerStyle>
                             </ListView>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="30,0,0,0">
                             <TextBlock Text="Venta por cliente" Margin="0,0,0,10"/>
                             <ListView ItemsSource="{Binding VentasPorCliente}" SelectionMode="None">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Cliente}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Cliente}" Margin="0,0,20,0"/>
                                             <TextBlock Text="{Binding Cantidad}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0,0,0,0"/>
+                                        <Setter Property="Margin" Value="0,-17,0,0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                            <TextBlock Text="Salida descabece" Margin="0,0,0,10"/>
+                            <ListView ItemsSource="{Binding Descabece}" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Key}" Margin="0,0,20,0"/>
+                                            <TextBlock Text="{Binding Value}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0,0,0,0"/>
+                                        <Setter Property="Margin" Value="0,-17,0,0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                            <TextBlock Text="Salida KFC" Margin="0,0,0,10"/>
+                            <ListView ItemsSource="{Binding SaleKFC}" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Key}" Margin="0,0,20,0"/>
+                                            <TextBlock Text="{Binding Value}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Padding" Value="0,0,0,0"/>
+                                        <Setter Property="Margin" Value="0,-17,0,0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                            <TextBlock Text="Salida Pie" Margin="0,0,0,10"/>
+                            <ListView ItemsSource="{Binding SalePie}" SelectionMode="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Key}" Margin="0,0,20,0"/>
+                                            <TextBlock Text="{Binding Value}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>

@@ -125,13 +125,17 @@ namespace FIFA.ViewModels
                     cmd.CommandType = CommandType.Text;
                     
                     // Ingreso por lote
-                    cmd.CommandText = @"INSERT INTO IngresoPorLote VALUES (@Semana, @Lote, @Cantidad, @Dia)";
+                    cmd.CommandText = @"INSERT INTO IngresoPorLote VALUES (@Semana, @Lote, @Cantidad, @Dia, 
+                                        @Descabece, @SaleKFC, @SalePie)";
                     conn.Open();
                     foreach (IngresoPorLote i in Lotes) {
                         cmd.Parameters.AddWithValue("@Semana", Semana);
                         cmd.Parameters.AddWithValue("@Lote", i.Lote);
                         cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
                         cmd.Parameters.AddWithValue("@Dia", i.Dia);
+                        cmd.Parameters.AddWithValue("@Descabece", i.Descabece);
+                        cmd.Parameters.AddWithValue("@SaleKFC", i.SaleKFC);
+                        cmd.Parameters.AddWithValue("@SalePie", i.SalePie);
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                     }
@@ -159,7 +163,8 @@ namespace FIFA.ViewModels
                     // Otros
                     cmd.CommandText = @"INSERT INTO Global VALUES 
                                         (@Semana, @Ingreso, @IngresoEdit, @Mortalidad, @MortalidadEdit, 
-                                        @Precio, @PrecioEdit, @Venta, @VentaEdit, @Liquidacion, @LiquidacionEdit)";
+                                        @Precio, @PrecioEdit, @Venta, @VentaEdit, @Liquidacion, @LiquidacionEdit, 
+                                        @Saldo)";
                     cmd.Parameters.AddWithValue("@Semana", Semana);
                     cmd.Parameters.AddWithValue("@Ingreso", Incubadoras.Sum(item => item.Cantidad));
                     cmd.Parameters.AddWithValue("@IngresoEdit", SqlDbType.Bit).Value = false;
@@ -171,6 +176,7 @@ namespace FIFA.ViewModels
                     cmd.Parameters.AddWithValue("@VentaEdit", SqlDbType.Bit).Value = false;
                     cmd.Parameters.AddWithValue("@Liquidacion", Liquidacion);
                     cmd.Parameters.AddWithValue("@LiquidacionEdit", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.AddWithValue("@Saldo", Saldo);
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
