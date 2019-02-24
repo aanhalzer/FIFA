@@ -99,7 +99,6 @@
     <Compile Include="Models\Global.cs" />
     <Compile Include="Models\Granja.cs" />
     <Compile Include="Models\Incubadora.cs" />
-    <Compile Include="Models\IngresoPorIncubadora.cs" />
     <Compile Include="Models\IngresoPorLote.cs" />
     <Compile Include="Models\Lote.cs" />
     <Compile Include="Models\Venta.cs" />

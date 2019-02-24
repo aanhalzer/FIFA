@@ -37,16 +37,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.40*"/>
-            <ColumnDefinition Width="0.20*"/>
+            <ColumnDefinition Width="0.60*"/>
             <ColumnDefinition Width="0.20*"/>
             <ColumnDefinition Width="0.20*"/>
         </Grid.ColumnDefinitions>
         
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" Orientation="Horizontal" Margin="50 20 0 0">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal" Margin="50 20 0 0">
             <TextBlock Text="Semana: " VerticalAlignment="Center" FontSize="20"/>
             <TextBox Margin="5 0 20 0" Width="110" Text="{Binding Semana, Mode=TwoWay}"/>
-            <Button Content="Crear/Editar semana"/>
         </StackPanel>
 
         <!--Ingresos por Lote-->
@@ -66,29 +64,14 @@
                     <controls:DataGridTextColumn Header="Descabece" Binding="{Binding Descabece}"/>
                     <controls:DataGridTextColumn Header="Sale KFC" Binding="{Binding SaleKFC}"/>
                     <controls:DataGridTextColumn Header="Sale Pie" Binding="{Binding SalePie}"/>
-                </controls:DataGrid.Columns>
-            </controls:DataGrid>
-        </StackPanel>
-
-        <!--Ingresos por Incubadora-->
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
-            <TextBlock Text="Ingreso por Incubadora" Style="{StaticResource InputLabels}"/>
-            <controls:DataGrid
-            HorizontalAlignment="Center"
-            IsReadOnly="False" 
-            Height="425"
-            AutoGenerateColumns="False"
-            VerticalScrollBarVisibility="Visible"
-            ItemsSource="{Binding Incubadoras, Mode=TwoWay}">
-                <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Header="Incubadora" Binding="{Binding Incubadora}"/>
-                    <controls:DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}"/>
+                    <controls:DataGridTextColumn Header="Saldo" Binding="{Binding Saldo}"/>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </StackPanel>
 
         <!--Ventas-->
-        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
             <TextBlock Text="Ventas" Style="{StaticResource InputLabels}"/>
             <controls:DataGrid 
             HorizontalAlignment="Center"
@@ -105,13 +88,11 @@
         </StackPanel>
 
         <!--Mortalidad, liquidacion, precio, saldo-->
-        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Style="{StaticResource WeekInputStackPanel}">
             <TextBlock Text="Mortalidad (%)" Style="{StaticResource InputLabels}"/>
             <TextBox HorizontalAlignment="Center" Width="60" Text="{Binding Mortalidad, Mode=TwoWay}"/>
             <TextBlock Text="Liquidación" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
             <TextBox HorizontalAlignment="Center" Width="120" Text="{Binding Liquidacion, Mode=TwoWay}"/>
-            <TextBlock Text="Saldo" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
-            <TextBox HorizontalAlignment="Center" Width="120" Text="{Binding Saldo, Mode=TwoWay}"/>
             <TextBlock Text="Precio" Margin="0 30 0 10" Style="{StaticResource InputLabels}"/>
             <TextBox HorizontalAlignment="Center" Width="120" 
                      Text="{Binding Precio, Mode=TwoWay, Converter={StaticResource DecimalConverter}}"/>
@@ -125,18 +106,12 @@
                     Command="{Binding LotesRemove, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
-            <Button Content="Insertar incubadora" Style="{StaticResource WeekInputButton}" 
-                    Command="{Binding IncubadorasAdd, Mode=OneWay}"/>
-            <Button Content="Eliminar ultima incubadora" Style="{StaticResource WeekInputButton}" 
-                    Command="{Binding IncubadorasRemove, Mode=OneWay}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
             <Button Content="Insertar cliente" Style="{StaticResource WeekInputButton}" 
                     Command="{Binding VentasAdd, Mode=OneWay}"/>
             <Button Content="Eliminar ultimo cliente" Style="{StaticResource WeekInputButton}" 
                     Command="{Binding VentasRemove, Mode=TwoWay}"/>
         </StackPanel>
-        <Button Grid.Row="2" Grid.Column="3" x:Name="PushData" Content="Guardar datos" 
+        <Button Grid.Row="2" Grid.Column="2" x:Name="PushData" Content="Guardar datos" 
             Style="{StaticResource WeekInputButton}" Command="{Binding Guardar, Mode=OneWay}"/>
     </Grid>
 </Page>

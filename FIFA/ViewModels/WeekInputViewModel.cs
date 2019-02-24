@@ -33,12 +33,6 @@ namespace FIFA.ViewModels
             set { liquidacion_ = value; OnPropertyChanged("Liquidacion"); }
         }
 
-        private int saldo_ = 0;
-        public int Saldo {
-            get { return saldo_; }
-            set { saldo_ = value; OnPropertyChanged("Saldo"); }
-        }
-
         private decimal precio_ = 0;
         public decimal Precio {
             get { return precio_; }
@@ -50,13 +44,6 @@ namespace FIFA.ViewModels
         public ObservableCollection<IngresoPorLote> Lotes {
             get { return lotes_; }
             set { lotes_ = value; OnPropertyChanged("Lotes"); }
-        }
-
-        private ObservableCollection<IngresoPorIncubadora> incubadoras_ = 
-            new ObservableCollection<IngresoPorIncubadora>();
-        public ObservableCollection<IngresoPorIncubadora> Incubadoras {
-            get { return incubadoras_ ; }
-            set { incubadoras_  = value; OnPropertyChanged("Incubadoras"); }
         }
 
         private ObservableCollection<Venta> ventas_ = 
@@ -80,22 +67,6 @@ namespace FIFA.ViewModels
         }
         private void LotesRemoveExecute() {
             Lotes.RemoveAt(Lotes.Count - 1);
-        }
-
-        private ICommand incubadorasAdd_;
-        public ICommand IncubadorasAdd {
-            get { return incubadorasAdd_ = incubadorasAdd_ ?? new DelegateCommand(IncubadorasAddExecute); }
-        }
-        private void IncubadorasAddExecute() {
-            Incubadoras.Add(new IngresoPorIncubadora());
-        }
-
-        private ICommand incubadorasRemove_;
-        public ICommand IncubadorasRemove {
-            get { return incubadorasRemove_ = incubadorasRemove_ ?? new DelegateCommand(IncubadorasRemoveExecute); }
-        }
-        private void IncubadorasRemoveExecute() {
-            Incubadoras.RemoveAt(Incubadoras.Count - 1);
         }
 
         private ICommand ventasAdd_;
@@ -126,7 +97,7 @@ namespace FIFA.ViewModels
                     
                     // Ingreso por lote
                     cmd.CommandText = @"INSERT INTO IngresoPorLote VALUES (@Semana, @Lote, @Cantidad, @Dia, 
-                                        @Descabece, @SaleKFC, @SalePie)";
+                                        @Descabece, @SaleKFC, @SalePie, @Incubadora, @Saldo)";
                     conn.Open();
                     foreach (IngresoPorLote i in Lotes) {
                         cmd.Parameters.AddWithValue("@Semana", Semana);
@@ -136,16 +107,8 @@ namespace FIFA.ViewModels
                         cmd.Parameters.AddWithValue("@Descabece", i.Descabece);
                         cmd.Parameters.AddWithValue("@SaleKFC", i.SaleKFC);
                         cmd.Parameters.AddWithValue("@SalePie", i.SalePie);
-                        cmd.ExecuteNonQuery();
-                        cmd.Parameters.Clear();
-                    }
-
-                    // Ingreso por incubadora
-                    cmd.CommandText = @"INSERT INTO IngresoPorIncubadora VALUES (@Semana, @Incubadora, @Cantidad)";
-                    foreach (IngresoPorIncubadora i in Incubadoras) {
-                        cmd.Parameters.AddWithValue("@Semana", Semana);
                         cmd.Parameters.AddWithValue("@Incubadora", i.Incubadora);
-                        cmd.Parameters.AddWithValue("@Cantidad", i.Cantidad);
+                        cmd.Parameters.AddWithValue("@Saldo", i.Saldo);
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                     }
@@ -163,10 +126,9 @@ namespace FIFA.ViewModels
                     // Otros
                     cmd.CommandText = @"INSERT INTO Global VALUES 
                                         (@Semana, @Ingreso, @IngresoEdit, @Mortalidad, @MortalidadEdit, 
-                                        @Precio, @PrecioEdit, @Venta, @VentaEdit, @Liquidacion, @LiquidacionEdit, 
-                                        @Saldo)";
+                                        @Precio, @PrecioEdit, @Venta, @VentaEdit, @Liquidacion, @LiquidacionEdit)";
                     cmd.Parameters.AddWithValue("@Semana", Semana);
-                    cmd.Parameters.AddWithValue("@Ingreso", Incubadoras.Sum(item => item.Cantidad));
+                    cmd.Parameters.AddWithValue("@Ingreso", Lotes.Sum(item => item.Cantidad));
                     cmd.Parameters.AddWithValue("@IngresoEdit", SqlDbType.Bit).Value = false;
                     cmd.Parameters.AddWithValue("@Mortalidad", Mortalidad);
                     cmd.Parameters.AddWithValue("@MortalidadEdit", SqlDbType.Bit).Value = false;
@@ -176,14 +138,12 @@ namespace FIFA.ViewModels
                     cmd.Parameters.AddWithValue("@VentaEdit", SqlDbType.Bit).Value = false;
                     cmd.Parameters.AddWithValue("@Liquidacion", Liquidacion);
                     cmd.Parameters.AddWithValue("@LiquidacionEdit", SqlDbType.Bit).Value = false;
-                    cmd.Parameters.AddWithValue("@Saldo", Saldo);
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
             }
             await ShowContentDialogAsync("Crear Semana", "La semana " + Semana + " ha sido creada.");
             Semana = "00-0000";
-            Incubadoras.Clear();
             Lotes.Clear();
             Ventas.Clear();
             Liquidacion = 0;

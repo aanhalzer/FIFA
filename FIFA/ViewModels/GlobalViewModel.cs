@@ -48,28 +48,19 @@ namespace FIFA.ViewModels
                         obj.VentaEdit = reader.GetBoolean(8);
                         obj.Liquidacion = reader.GetInt32(9);
                         obj.LiquidacionEdit = reader.GetBoolean(10);
-                        obj.Saldo = reader.GetInt32(11);
 
                         // Getting from other tables
-                        obj.IngresoPorIncubadoras = new ObservableCollection<IngresoPorIncubadora>();
                         obj.VentasPorCliente = new ObservableCollection<Venta>();
                         obj.Descabece = new Dictionary<string, int>();
                         obj.SaleKFC = new Dictionary<string, int>();
                         obj.SalePie = new Dictionary<string, int>();
+                        obj.IngresoPorIncubadoras = new Dictionary<string, int>();
                         using (SqlCommand cmd2 = new SqlCommand()) {
                             cmd2.Connection = conn;
                             cmd2.CommandType = CommandType.Text;
-                            cmd2.CommandText = String.Format(@"SELECT Incubadora, Cantidad FROM IngresoPorIncubadora WHERE Semana = '{0}'",obj.Semana);
+                            cmd2.CommandText = String.Format(
+                                @"SELECT Cliente, Cantidad FROM Venta WHERE Semana = '{0}'", obj.Semana);
                             SqlDataReader reader2 = cmd2.ExecuteReader();
-                            while (reader2.Read()) {
-                                IngresoPorIncubadora ingreso = new IngresoPorIncubadora();
-                                ingreso.Incubadora = reader2.GetString(0);
-                                ingreso.Cantidad = reader2.GetInt32(1);
-                                obj.IngresoPorIncubadoras.Add(ingreso);
-                            }
-                            reader2.Close();
-                            cmd2.CommandText = String.Format(@"SELECT Cliente, Cantidad FROM Venta WHERE Semana = '{0}'", obj.Semana);
-                            reader2 = cmd2.ExecuteReader();
                             while (reader2.Read()) {
                                 Venta venta = new Venta();
                                 venta.Cliente = reader2.GetString(0);
@@ -80,14 +71,28 @@ namespace FIFA.ViewModels
                             
                             string[] semanaSplit = obj.Semana.Split('-');
                             int semana = Int32.Parse(semanaSplit[0]), year = Int32.Parse(semanaSplit[1]);
-                            cmd2.CommandText = String.Format(@"SELECT Dia, Descabece, SaleKFC, SalePie FROM 
-                                                                IngresoPorLote WHERE Semana = '{0}'", obj.Semana);
+                            cmd2.CommandText = String.Format(
+                                @"SELECT Incubadora, Cantidad, Saldo, Dia, Descabece, SaleKFC, SalePie 
+                                FROM IngresoPorLote WHERE Semana = '{0}'"
+                                , obj.Semana);
                             reader2 = cmd2.ExecuteReader();
                             while (reader2.Read()) {
-                                int[] dias = {reader2.GetInt32(0),
-                                              reader2.GetInt32(1),
-                                              reader2.GetInt32(2),
-                                              reader2.GetInt32(3)};
+
+                                // Cantidades por Incubadora
+                                string incubadora = reader2.GetString(0);
+                                int cantidad = reader2.GetInt32(1);
+                                if (obj.IngresoPorIncubadoras.ContainsKey(incubadora))
+                                    obj.IngresoPorIncubadoras[incubadora] += cantidad;
+                                else
+                                    obj.IngresoPorIncubadoras.Add(incubadora, cantidad);
+
+                                obj.Saldo += reader2.GetInt32(2);
+
+                                // Salida de pollitos
+                                int[] dias = {reader2.GetInt32(3),
+                                              reader2.GetInt32(4),
+                                              reader2.GetInt32(5),
+                                              reader2.GetInt32(6)};
                                 string[] salidas = SemanaSalidas(semana, year, dias);
                                 if (obj.Descabece.ContainsKey(salidas[0]))
                                     obj.Descabece[salidas[0]]++;
@@ -127,9 +132,10 @@ namespace FIFA.ViewModels
             enterDate = c.AddWeeks(enterDate, num);
             enterDate = c.AddDays(enterDate, entra - 1);
             string partial = "-" + year.ToString();
-            return new string[] { c.GetWeekOfYear(c.AddDays(enterDate, descabece), cwr, dw).ToString() + partial,
-                                  c.GetWeekOfYear(c.AddDays(enterDate, saleKFC), cwr, dw).ToString() + partial,
-                                  c.GetWeekOfYear(c.AddDays(enterDate, salePie), cwr, dw).ToString() + partial};
+            return new string[] 
+                { c.GetWeekOfYear(c.AddDays(enterDate, descabece), cwr, dw).ToString().PadLeft(2, '0') + partial,
+                  c.GetWeekOfYear(c.AddDays(enterDate, saleKFC), cwr, dw).ToString().PadLeft(2, '0') + partial,
+                  c.GetWeekOfYear(c.AddDays(enterDate, salePie), cwr, dw).ToString().PadLeft(2, '0') + partial};
         }
     }
 }
