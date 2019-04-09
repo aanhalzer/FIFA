@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FIFA.Models
 {
-    class Venta
+    public class Venta
     {
         public Venta() {
             Cliente = "N/A";

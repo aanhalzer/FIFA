@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FIFA.Models
-{
-    public class Granja
-    {
-        public string Nombre { get; set; }
+namespace FIFA.Repositories {
+    public class LoteRepo {
     }
 }

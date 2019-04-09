@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FIFA.Models
 {
-    class Global {
+    public class Global {
         // From SQL Global table
         public string Semana { get; set; }
         public int Ingreso { get; set; }

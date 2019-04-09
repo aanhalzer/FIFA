@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FIFA.Models
 {
-    class Lote
+    public class Lote
     {
         public int Id { get; set; }
         public string Granja { get; set; }
