@@ -3,10 +3,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FIFA.Views"
+    xmlns:vm="using:FIFA.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="{x:Bind ViewModel.PageLoad}">
+
+    <Page.DataContext>
+        <vm:WeekPickerViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,14 +30,16 @@
             FontSize="50"
             HorizontalAlignment="Center"
             Margin= "0 70 0 0"/>
-        <StackPanel Grid.Column="0" Grid.Row="1"
-                    Margin="50 20 50 10">
-            <TextBlock Text="La última semana creada en el sistema es la semana 04-2019. La semana siguiente a ser creada seria la semana 05-2019, la cual comprende las siguientes fechas:"
-                       HorizontalAlignment="Center" TextWrapping="WrapWholeWords" FontSize="20"/>
-            <ListBox Margin="10 20 10 10" HorizontalContentAlignment="Center">
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="50 20 50 10">
+            <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" FontSize="20">
+                La última semana creada en el sistema es la semana 04-2019. 
+                La semana siguiente a ser creada seria la semana 05-2019, con estas fechas:
+            </TextBlock>
+            <ListBox Margin="10 20 10 10">
                 <ListBoxItem>Lunes, 2 de Enero del 2019</ListBoxItem>
                 <ListBoxItem>Martes, 3 de Enero del 2019</ListBoxItem>
                 <ListBoxItem>Miercoles, 4 de Enero del 2019</ListBoxItem>
+                <ListBoxItem>Jueves, 5 de Enero del 2019</ListBoxItem>
                 <ListBoxItem>Jueves, 5 de Enero del 2019</ListBoxItem>
                 <ListBoxItem>Viernes, 6 de Enero del 2019</ListBoxItem>
                 <ListBoxItem>Sabado, 7 de Enero del 2019</ListBoxItem>
@@ -39,7 +47,7 @@
             </ListBox>
             <Button Margin="20 40 20 20"
                     HorizontalAlignment="Center"
-                    FontSize="20"
+                    FontSize="15"
                     Content="Crear semana 05-2019"/>
         </StackPanel>
 
@@ -49,10 +57,15 @@
             FontSize="50"
             HorizontalAlignment="Center"
             Margin= "0 70 0 0"/>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock />
-            <TextBox />
-            <Button />
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="50 20 50 10">
+            <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" FontSize="20">
+                Para editar una semana que ya ha sido creada, ingrese la semana y presione el boton: 
+            </TextBlock>
+            <TextBox Text="00-000" HorizontalAlignment="Center" Margin="0 30 0 0"/>
+            <Button Margin="20 30 20 20"
+                    HorizontalAlignment="Center"
+                    FontSize="15"
+                    Content="Editar semana"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -38,7 +38,7 @@ namespace FIFA
         }
 
         private void WeekInputButton_Click(object sender, RoutedEventArgs e) {
-            mainFrame.Navigate(typeof(WeekInput));
+            mainFrame.Navigate(typeof(WeekPicker));
         }
     }
 }
