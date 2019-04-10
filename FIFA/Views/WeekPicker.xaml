@@ -31,20 +31,8 @@
             HorizontalAlignment="Center"
             Margin= "0 70 0 0"/>
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="50 20 50 10">
-            <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" FontSize="20">
-                La última semana creada en el sistema es la semana 04-2019. 
-                La semana siguiente a ser creada seria la semana 05-2019, con estas fechas:
-            </TextBlock>
-            <ListBox Margin="10 20 10 10">
-                <ListBoxItem>Lunes, 2 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Martes, 3 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Miercoles, 4 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Jueves, 5 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Jueves, 5 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Viernes, 6 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Sabado, 7 de Enero del 2019</ListBoxItem>
-                <ListBoxItem>Domingo, 8 de Enero del 2019</ListBoxItem>
-            </ListBox>
+            <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" FontSize="20"
+                       Text="{x:Bind ViewModel.SemanaCrearText, Mode=OneWay}"/>
             <Button Margin="20 40 20 20"
                     HorizontalAlignment="Center"
                     FontSize="15"
@@ -61,7 +49,7 @@
             <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" FontSize="20">
                 Para editar una semana que ya ha sido creada, ingrese la semana y presione el boton: 
             </TextBlock>
-            <TextBox Text="00-000" HorizontalAlignment="Center" Margin="0 30 0 0"/>
+            <TextBox HorizontalAlignment="Center" Margin="0 30 0 0" Text="{x:Bind ViewModel.EditarSemana, Mode=TwoWay}"/>
             <Button Margin="20 30 20 20"
                     HorizontalAlignment="Center"
                     FontSize="15"
