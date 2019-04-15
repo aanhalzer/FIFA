@@ -8,6 +8,16 @@ using System.Threading.Tasks;
 namespace FIFA.Models
 {
     public class Global {
+
+        public Global() {
+            Saldo = 0;
+            Venta = 0;
+            Mortalidad = 0;
+            Liquidacion = 0;
+            Precio = 0;
+            Ingreso = 0;
+        }
+
         // From SQL Global table
         public string Semana { get; set; }
         public int Ingreso { get; set; }
